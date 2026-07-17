@@ -1,16 +1,39 @@
-# LeetVault 🔄
+# LeetVault 
+
+<p align="center">
+    <img src="assets/icons/icon2000.png" alt="LeetVault Banner">
+</p>
 
 **Solved on LeetCode, saved to GitHub — automatically.**
 
-LeetVault is a Chrome extension that watches your LeetCode submissions and keeps a clean, organized, auto-documented archive of them on GitHub. No more manually copy-pasting solutions into a repo after every submit — solve the problem, and LeetVault takes care of the rest.
+LeetVault is a browser extension that watches your LeetCode submissions and keeps a clean, organized, auto-documented archive of them on GitHub. No more manually copy-pasting solutions into a repo after every submit — solve the problem, and LeetVault takes care of the rest.
 
-<!-- Add a screenshot or GIF of the popup + the live-sync bubble here -->
+## Sync Option
+
+![Sync Option](assets/IMG/ss1.png)
+
+## Sync Engine 
+
+![Sync Engine](assets/IMG/ss2.png)
+
+## Success!
+
+![Success!](assets/IMG/ss3.png)
+
+### Live Sync Widget 
+![Live Sync Widget](assets/IMG/live.png)
 
 ---
 
 ## Why I built this
 
 I kept solving problems on LeetCode and telling myself "I'll push this to GitHub later" — and later never came. LeetVault removes that friction entirely. It sits quietly in the background, and the moment a submission is accepted, it organizes the code, writes a README for that problem, and commits it to your repo.
+
+## Note on Code & Design
+
+> [!NOTE]
+> - **AI-Generated Comments**: Many of the code comments across the repository were generated with the help of AI, so you may find some explanations phrased in a machine-like way or structured differently than standard hand-written comments.
+> - **Design Aesthetics**: Since I don't know professional designing, the UI design and layout were created using AI to achieve a polished, modern look. As a result, the styling and layout may have a distinct AI-designed aesthetic.
 
 ## Features
 
@@ -33,32 +56,43 @@ I kept solving problems on LeetCode and telling myself "I'll push this to GitHub
 
 ## Installation (for development / unpacked install)
 
-LeetVault isn't on the Chrome Web Store yet, so for now it runs as an unpacked extension:
+LeetVault is not on the app stores yet, so for now it runs as an unpacked extension:
 
 1. Clone this repo.
 2. Make sure the folder structure looks like this:
    ```
    leetvault/
    ├── manifest.json
-   ├── background/
-   │   └── background.js
-   ├── LEETCODE/
-   │   ├── content-script.js
+   ├── CORE/
    │   ├── core.js
    │   ├── metadata.js
    │   ├── generator.js
    │   ├── readme.js
-   │   ├── exporter.js
-   │   ├── github.js
+   │   └── exporter.js
+   ├── GITHUB/
+   │   └── github.js
+   ├── LEETCODE/
+   │   ├── content-script.js
    │   ├── sync.js
    │   ├── popup.js
    │   ├── popup.html
    │   └── popup.css
-   └── assets/
-       └── icons/
+   ├── background/
+   │   └── background.js
+   ├── assets/
+   │   └── icons/
+   └── firefox/
+       └── ... (Firefox Manifest V3 compatible build)
    ```
-3. Go to `chrome://extensions`, enable **Developer mode**, and click **Load unpacked**. Select the `leetvault/` folder.
+
+### Loading in Chrome
+3. Go to `chrome://extensions`, enable **Developer mode**, and click **Load unpacked**. Select the root `leetvault/` folder.
 4. Pin the extension and open it from any LeetCode problem page.
+
+### Loading in Firefox
+3. Go to the URL `about:debugging#/runtime/this-firefox`.
+4. Click on the **Load Temporary Add-on...** button.
+5. Select the `manifest.json` file inside the `firefox/` folder.
 
 ## GitHub OAuth setup
 
@@ -66,7 +100,7 @@ GitHub's OAuth flow needs a client secret, which can never live inside extension
 
 1. A GitHub OAuth App (create one under **GitHub → Settings → Developer settings → OAuth Apps**). Set its callback URL to the value Chrome gives you from `chrome.identity.getRedirectURL()` (logged to the console the first time you try to log in).
 2. A tiny serverless proxy (a Cloudflare Worker or Vercel function works great) that exchanges the OAuth `code` for an `access_token` using your client secret, and returns `{ access_token }`.
-3. Drop your OAuth App's client ID and your proxy's URL into `LEETCODE/github.js` (`clientId` and `tokenExchangeUrl`).
+3. Drop your OAuth App's client ID and your proxy's URL into `GITHUB/github.js` (`clientId` and `tokenExchangeUrl`).
 
 ## Permissions, and why they're needed
 
