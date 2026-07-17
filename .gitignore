@@ -1,0 +1,24 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Developer IDE configs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Testing/Local Data dumps and backups
+data/
+*-export.json
+leetcode_submissions_*.json
+leetcode_sync_report.json
+test-oauth-diagnostic.html
+
+# Local Firefox extension configuration files or test folders
+firefox/.web-ext/
+web-ext-artifacts/
