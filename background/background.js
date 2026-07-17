@@ -705,6 +705,13 @@ async function runHistoricalSync(options) {
 
         const files = Exporter.getFiles();
 
+        // ---------- STATE JSON ----------
+        // Save repository state so live sync can read it later and merge
+        // new problems without wiping the root README.
+        const stats = Readme.computeStats(repository);
+        const stateJSON = JSON.stringify({ stats, problems: repository }, null, 2);
+        files.push({ path: ".leetvault_state.json", content: stateJSON });
+
         // ---------- GITHUB ----------
 
         await checkPauseStop();
