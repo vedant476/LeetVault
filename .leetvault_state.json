@@ -1,8 +1,8 @@
 {
   "stats": {
-    "total": 1,
+    "total": 2,
     "easy": 1,
-    "medium": 0,
+    "medium": 1,
     "hard": 0,
     "languages": [
       "C++"
@@ -42,6 +42,44 @@
       ],
       "likes": 795,
       "dislikes": 59,
+      "paidOnly": false
+    },
+    {
+      "title": "Length of Longest Subarray With at Most K Frequency",
+      "slug": "length-of-longest-subarray-with-at-most-k-frequency",
+      "qid": "3225",
+      "files": [
+        {
+          "filename": "solution.cpp",
+          "language": "cpp",
+          "code": "class Solution {\npublic:\n    int maxSubarrayLength(vector<int>& nums, int k) {\n        unordered_map<int, int> counter;\n        int result = 0, lo = 0;\n        for (int hi = 0; hi < nums.size(); ++hi) {\n            auto& c = counter[nums[hi]];\n            c++;\n            while (c > k) {\n                auto out = nums[lo++];\n                counter[out]--;\n            }\n            result = max(result, hi - lo + 1);\n        }\n        return result;\n    }\n};",
+          "runtime": "47 ms",
+          "memory": "149.3 MB",
+          "status": "Accepted",
+          "timestamp": 1786558914,
+          "note": "",
+          "id": 2104624084
+        }
+      ],
+      "questionId": "3225",
+      "url": "https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/",
+      "difficulty": "Medium",
+      "tags": [
+        {
+          "name": "Array",
+          "slug": "array"
+        },
+        {
+          "name": "Hash Table",
+          "slug": "hash-table"
+        },
+        {
+          "name": "Sliding Window",
+          "slug": "sliding-window"
+        }
+      ],
+      "likes": 1470,
+      "dislikes": 40,
       "paidOnly": false
     }
   ]
