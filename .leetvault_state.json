@@ -1,0 +1,48 @@
+{
+  "stats": {
+    "total": 1,
+    "easy": 1,
+    "medium": 0,
+    "hard": 0,
+    "languages": [
+      "C++"
+    ],
+    "lastSync": "12 Aug 2026"
+  },
+  "problems": [
+    {
+      "title": "Number of Senior Citizens",
+      "slug": "number-of-senior-citizens",
+      "qid": "2727",
+      "files": [
+        {
+          "filename": "solution.cpp",
+          "language": "cpp",
+          "code": "class Solution {\npublic:\n    int countSeniors(vector<string>& details) {\n        int cnt =0;\n        for( auto s : details){\n            string age = s.substr(11,2);\n            if( stoi(age)>60) cnt++;\n        }\n        return cnt;\n    }\n};",
+          "runtime": "0 ms",
+          "memory": "17.2 MB",
+          "status": "Accepted",
+          "timestamp": 1786558439,
+          "note": "",
+          "id": 2104612259
+        }
+      ],
+      "questionId": "2727",
+      "url": "https://leetcode.com/problems/number-of-senior-citizens/",
+      "difficulty": "Easy",
+      "tags": [
+        {
+          "name": "Array",
+          "slug": "array"
+        },
+        {
+          "name": "String",
+          "slug": "string"
+        }
+      ],
+      "likes": 795,
+      "dislikes": 59,
+      "paidOnly": false
+    }
+  ]
+}
